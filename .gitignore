@@ -6,9 +6,6 @@ __pycache__/
 node_modules/
 build/
 
-# Docker
-*.dockerfile
-docker-compose.yml
 
 # Environment variables
 .env
