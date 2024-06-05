@@ -4,12 +4,12 @@ import './Output.css'; // Outputコンポーネント用のCSSファイルをイ
 const Output = () => {
     return (
         <div className="output-container">
-            <div className="rectangleoutput">長方形１</div>
-            <div className="rectangleoutput">長方形２</div>
-            <div className="rectangleoutput">長方形３</div>
+            <input type="text" className="rectangleoutput" placeholder="提案１" />
+            <input type="text" className="rectangleoutput" placeholder="提案２" />
+            <input type="text" className="rectangleoutput" placeholder="提案３" />
             <div className="button-containeroutput">
-                <button className="buttonoutput">ボタン１</button>
-                <button className="buttonoutput">ボタン２</button>
+                <button className="buttonoutput">GoogleCalenderに追加する</button>
+                <button className="buttonoutput">もう一度提案してもらう</button>
             </div>
         </div>
     );
