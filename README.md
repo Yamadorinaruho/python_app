@@ -27,5 +27,15 @@ npm install
 Docker Composeを使用してコンテナをビルドし、起動します。
 docker-compose up --build
 
+### Reactに関して
+以下のコマンド入力が必要かもしれません。
+
+アイコン，DOMのインストール
+
+`npm install react-icons`
+
+`npm install react-router-dom@latest`
+
+
 ReactのURL 　http://localhost:3000/
-PythnのURL 　http://127.0.0.1:8000/
+PythonのURL 　http://127.0.0.1:8000/
