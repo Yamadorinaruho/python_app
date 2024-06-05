@@ -29,8 +29,11 @@ docker-compose up --build
 
 ### Reactに関して
 以下のコマンド入力が必要かもしれません。
+
 アイコン，DOMのインストール
+
 `npm install react-icons`
+
 `npm install react-router-dom@latest`
 
 
