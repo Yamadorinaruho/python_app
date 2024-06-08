@@ -1,14 +1,11 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Home.css'; // CSSファイルをインポート
 import { FaMapMarkerAlt, FaCalendarAlt, FaUser } from 'react-icons/fa'; // 使用するアイコンをインポート
-import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Output from './Output'; // Outputコンポーネントをインポート
 
-const Home = () => {
+const TravelApp = () => {
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);  // 旅行の日付の範囲を管理する
     const [destination, setDestination] = useState('');
     const [details, setDetails] = useState('');
@@ -45,6 +42,7 @@ const Home = () => {
 
     return (
         <div className="container">
+            <h1>旅行提案アプリ</h1>
             <div className="rectangle-container">
                 <div className="input-with-icon">
                     <FaMapMarkerAlt className="input-icon" />
@@ -73,7 +71,7 @@ const Home = () => {
                     <select
                         className="rectangle small-rectangle-3"
                         value={numPeople}
-                        onChange={(e) => setNumPeople(e.target.value)}
+                        onChange={(e) => setNumPeople(parseInt(e.target.value))}
                     >
                         {[...Array(10)].map((_, i) => (
                             <option key={i} value={i + 1}>{i + 1}人</option>
@@ -91,9 +89,35 @@ const Home = () => {
             <button onClick={getSchedule} disabled={loading} className="btn">
                 {loading ? 'Loading...' : '提案してもらう'}
             </button>
-            </div>
+            {error && (
+                <div className="error">
+                    {error}
+                </div>
+            )}
+            {response && (
+                <div className="response-container">
+                    <h2>{response.旅行タイトル}</h2>
+                    <h3>詳細スケジュール:</h3>
+                    {response.詳細スケジュール.map((detail, index) => (
+                        <div key={index} className="schedule-detail">
+                            <div>
+                                <strong>日付:</strong> {detail.日付}
+                            </div>
+                            <div>
+                                <strong>朝:</strong> {detail.スケジュール.朝}
+                            </div>
+                            <div>
+                                <strong>昼:</strong> {detail.スケジュール.昼}
+                            </div>
+                            <div>
+                                <strong>夜:</strong> {detail.スケジュール.夜}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 };
 
-export default Home;
-
+export default TravelApp;

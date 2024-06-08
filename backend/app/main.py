@@ -16,7 +16,6 @@ logging.basicConfig(level=logging.DEBUG)
 # FastAPIのインスタンス作成
 app = FastAPI()
 
-
 # 全てのオリジンを許可
 origins = ["*"]
 
@@ -58,7 +57,12 @@ async def generate_content(request: GenerateRequest):
             "旅行タイトル": "旅行の概要を簡単に説明するタイトル",
             "詳細スケジュール": [
                 {{
-                    "スケジュール詳細": "スケジュールの詳細"
+                    "日付": "日付",
+                    "スケジュール": {{
+                        "朝": "朝のスケジュール(例: 朝食、観光など)",
+                        "昼": "昼のスケジュール（例: 昼食、観光など）",
+                        "夜": "夜のスケジュール（例: 夕食、観光など）"
+                    }}
                 }}
             ]
         }}
@@ -69,7 +73,8 @@ async def generate_content(request: GenerateRequest):
         logging.debug(f"Generated response: {response.text}")
         
         # 生成されたJSONをパースして辞書形式に変換
-        response_dict = json.loads(response.text.strip('```json').strip())
+        response_text = response.text.strip().strip('```json').strip()
+        response_dict = json.loads(response_text)
         
         # Pydanticモデルに変換
         result = GenerateResponse(response=response_dict)
