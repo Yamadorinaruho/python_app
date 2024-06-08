@@ -6,14 +6,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #ccc; /* 下線の追加 */
+    padding-bottom: 10px; /* 下線と要素の間の余白 */
+
 }
 
 .action-item {
-    margin-right: 20px;
-}
-
-.action-item {
-    margin-right: 20px; /* アイコンとテキストの間隔を調整 */
+    margin-right: 40px;
 }
 
 .action-item a {
@@ -24,24 +23,16 @@
 a {
     color: inherit;
     text-decoration: none;
-    font-weight: normal; /* デフォルトのフォントウェイト */
+    font-weight: normal;
 }
 
 a:hover {
-    font-weight: bold; /* ホバー時に太字に変更 */
     color: black; /* ホバー時に黒色に変更 */
+    font-weight: bold; 
 }
 
 /* Header.css */
 .title {
     margin-bottom: 10px; /* タイトルと線の間の余白 */
-}
-
-.title {
-    border-bottom: 1px solid #ccc; /* 下線の追加 */
-}
-
-.actions {
-    border-bottom: 1px solid #ccc; /* 下線の追加 */
-    padding-bottom: 10px; /* 下線と要素の間の余白 */
+    border-bottom: 1px solid #ccc;
 }

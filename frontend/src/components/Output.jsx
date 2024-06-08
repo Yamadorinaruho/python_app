@@ -1,5 +1,6 @@
 import React from 'react';
-import './Output.css'; // Outputコンポーネント用のCSSファイルをインポート
+import './Output.css'; 
+import { Link } from 'react-router-dom';
 
 const Output = () => {
     return (
@@ -8,8 +9,8 @@ const Output = () => {
             <input type="text" className="rectangleoutput" placeholder="提案２" />
             <input type="text" className="rectangleoutput" placeholder="提案３" />
             <div className="button-containeroutput">
-                <button className="buttonoutput">GoogleCalenderに追加する</button>
-                <button className="buttonoutput">もう一度提案してもらう</button>
+                <button className="buttonoutput">GoogleCalenderに追加</button>
+                <Link to="/" className="buttonoutput">もう一度提案してもらう</Link>
             </div>
         </div>
     );

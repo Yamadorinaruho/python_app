@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    border-radius: 10px;
+    background-color: #e0f7fa;
 }
 
 .full-screen-image {
@@ -88,3 +88,4 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* ホバー時の陰影 */
     color: #FFFFFF;
 }
+

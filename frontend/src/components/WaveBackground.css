@@ -1,0 +1,83 @@
+/* WaveBackground.css */
+.wave-container {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    align-items: center; /* 垂直方向の中央寄せ */
+    flex-direction: column; /* 子要素を縦に並べる */
+}
+
+.methodhome h1,
+.method h1 {
+    margin-bottom: 20px;
+    color: transparent;
+    -webkit-text-stroke: 2px #454545;
+    text-shadow: 2.5px 2.5px #81bedb;
+}
+  
+
+
+.methodhome ul {
+  padding: 0;
+  color: transparent;
+  text-shadow: 1px 1px #000000;
+  list-style-type: decimal;
+}
+
+.method li {
+  margin: 10px 0; /* リスト項目間の余白を設定 */
+  font-size: 25px; /* テキストの大きさを指定 */
+  font-family: Arial, sans-serif; /* テキストのフォントを指定 */
+  font-weight: bold;
+  list-style-type: none;
+}
+
+.methodhome li{
+    margin: 10px 0; /* リスト項目間の余白を設定 */
+    font-size: 20px; /* テキストの大きさを指定 */
+    font-family: Arial, sans-serif; /* テキストのフォントを指定 */
+    font-weight: bold;  
+}
+
+.waves {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+  
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+  
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+  
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+  
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+  
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+  
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Home.css'; // CSSファイルをインポート
 import { FaMapMarkerAlt, FaCalendarAlt, FaUser } from 'react-icons/fa'; // 使用するアイコンをインポート
 import { Link } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Home = () => {
+    const [dateRange, setDateRange] = useState([new Date(), new Date()]);  // 旅行の日付の範囲を管理する
+
     return (
         <div className="container">
-            <img src="/img/oceanhouse2.jpg" alt="Ocean House" className="full-screen-image" />
             <div className="rectangle-container">
                 <div className="input-with-icon">
                     <FaMapMarkerAlt className="input-icon" />
@@ -14,7 +17,15 @@ const Home = () => {
                 </div>
                 <div className="input-with-icon">
                     <FaCalendarAlt className="input-icon" />
-                    <input type="text" className="rectangle small-rectangle-2" placeholder="日付" />
+                    <DatePicker
+                        onChange={dates => setDateRange(dates)} // 開始日と終了日の配列
+                        startDate={dateRange[0]} // 開始日
+                        endDate={dateRange[1]} // 終了日
+                        dateFormat="yyyy/MM/dd"
+                        selectsRange // 日付の範囲
+                        placeholderText="旅行の日付を選択"
+                        className="rectangle small-rectangle-2"
+                    />
                 </div>
                 <div className="input-with-icon">
                     <FaUser className="input-icon" />
