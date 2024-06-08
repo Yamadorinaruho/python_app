@@ -1,5 +1,5 @@
 import React from 'react';
-import { RiHome2Line, RiSearchLine, RiUserLine, RiInformationLine } from 'react-icons/ri'; // react-icons/riから必要なアイコンをインポート
+import { RiCompass3Line, RiHome2Line, RiSearchLine, RiUserLine, RiInformationLine } from 'react-icons/ri'; // react-icons/riから必要なアイコンをインポート
 import './Header.css'; // スタイルを定義したCSSファイルをインポート
 
 const Header = () => {
@@ -14,19 +14,19 @@ const Header = () => {
                 </div>
                 <div className="actions">
                     <div className="action-item">
-                        <a href="#"><RiHome2Line />　ホーム</a>
+                        <a href="/"><RiHome2Line /> ホーム</a>
                     </div>
                     <div className="action-item">
-                        <a href="#"><RiSearchLine />　見つける</a>
+                        <a href="#"><RiCompass3Line /> 見つける</a>
                     </div>
                     <div className="action-item">
-                        <a href="#"><RiSearchLine />　検索</a>
+                        <a href="#"><RiSearchLine /> 検索</a>
                     </div>
                     <div className="action-item">
-                        <a href="#"><RiInformationLine />　概要</a>
+                        <a href="#"><RiInformationLine /> 概要</a>
                     </div>
                     <div className="action-item">
-                        <a href="#"><RiUserLine />　ユーザー</a>
+                        <a href="#"><RiUserLine /> ユーザー</a>
                     </div>
                 </div>
             </div>
