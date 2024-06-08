@@ -7,5 +7,3 @@ node_modules/
 build/
 
 
-# Environment variables
-.env

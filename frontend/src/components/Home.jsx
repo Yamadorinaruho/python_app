@@ -1,19 +1,60 @@
+
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Home.css'; // CSSファイルをインポート
 import { FaMapMarkerAlt, FaCalendarAlt, FaUser } from 'react-icons/fa'; // 使用するアイコンをインポート
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Output from './Output'; // Outputコンポーネントをインポート
 
 const Home = () => {
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);  // 旅行の日付の範囲を管理する
+    const [destination, setDestination] = useState('');
+    const [details, setDetails] = useState('');
+    const [numPeople, setNumPeople] = useState(1);
+    const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const getSchedule = async () => {
+        const requestData = {
+            date: dateRange.map(date => date.toISOString().split('T')[0]).join(' - '),
+            destination,
+            details,
+            numPeople,
+        };
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            const res = await axios.post('http://localhost:8000/generate_content', requestData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setResponse(res.data.response);
+        } catch (error) {
+            console.error('Error fetching schedule:', error);
+            setError('Failed to fetch schedule. Please try again later. ' + error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="container">
             <div className="rectangle-container">
                 <div className="input-with-icon">
                     <FaMapMarkerAlt className="input-icon" />
-                    <input type="text" className="rectangle small-rectangle-1" placeholder="目的地" />
+                    <input
+                        type="text"
+                        className="rectangle small-rectangle-1"
+                        placeholder="目的地"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                    />
                 </div>
                 <div className="input-with-icon">
                     <FaCalendarAlt className="input-icon" />
@@ -29,24 +70,30 @@ const Home = () => {
                 </div>
                 <div className="input-with-icon">
                     <FaUser className="input-icon" />
-                    <select className="rectangle small-rectangle-3">
-                        <option value="1">1人</option>
-                        <option value="2">2人</option>
-                        <option value="3">3人</option>
-                        <option value="4">4人</option>
-                        <option value="5">5人</option>
-                        <option value="6">6人</option>
-                        <option value="7">7人</option>
-                        <option value="8">8人</option>
-                        <option value="9">9人</option>
-                        <option value="10">10人</option>
+                    <select
+                        className="rectangle small-rectangle-3"
+                        value={numPeople}
+                        onChange={(e) => setNumPeople(e.target.value)}
+                    >
+                        {[...Array(10)].map((_, i) => (
+                            <option key={i} value={i + 1}>{i + 1}人</option>
+                        ))}
                     </select>
                 </div>
             </div>
-            <input type="text" className="rectangle long-rectangle" placeholder="詳細を書いてください" />
-            <Link to="/output" className="btn">提案してもらう</Link>
-        </div>
+            <input
+                type="text"
+                className="rectangle long-rectangle"
+                placeholder="詳細を書いてください"
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
+            />
+            <button onClick={getSchedule} disabled={loading} className="btn">
+                {loading ? 'Loading...' : '提案してもらう'}
+            </button>
+            </div>
     );
 };
 
 export default Home;
+

@@ -4,3 +4,11 @@ sqlalchemy
 psycopg2-binary
 pydantic
 alembic
+requests
+google-cloud-language
+pydantic
+six
+google-generativeai
+markdown2
+jinja2
+python-dotenv
