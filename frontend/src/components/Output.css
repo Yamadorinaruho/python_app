@@ -31,6 +31,7 @@
 .buttonoutput {
     flex: 1; /* ボタンが均等に配置されるようにする */
     margin-top: 20px; /* 上部からの余白 */
+    margin-bottom: 20px;
     background-color: #313030; /* 背景色 */
     color: #FFFFFF; /* テキスト色 */
     border: none; /* ボーダーなし */

@@ -74,6 +74,7 @@
 
 .btn {
     margin-top: 20px; /* 上部からの余白 */
+    margin-bottom: 20px; /* 下部からの余白 */
     background-color: #313030; /* 背景色 */
     color: #FFFFFF; /* テキスト色 */
     border: none; /* ボーダーなし */
