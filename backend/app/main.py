@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import google.generativeai as genai
 from dotenv import load_dotenv
+import requests
 
 # 環境変数のロード
 load_dotenv()
@@ -42,6 +43,15 @@ class GenerateRequest(BaseModel):
 class GenerateResponse(BaseModel):
     response: dict
 
+def fetch_image(query: str) -> str:
+    pixabay_api_key = os.environ["PIXABAY_API_KEY"]
+    url = f"https://pixabay.com/api/?key={pixabay_api_key}&q={query}&image_type=photo"
+    response = requests.get(url)
+    data = response.json()
+    if "hits" in data and len(data["hits"]) > 0:
+        return data["hits"][0]["webformatURL"]
+    return ""
+
 @app.post("/generate_content", response_model=GenerateResponse)
 async def generate_content(request: GenerateRequest):
     try:
@@ -59,9 +69,12 @@ async def generate_content(request: GenerateRequest):
                 {{
                     "日付": "日付",
                     "スケジュール": {{
-                        "朝": "朝のスケジュール(例: 朝食、観光など)",
-                        "昼": "昼のスケジュール（例: 昼食、観光など）",
-                        "夜": "夜のスケジュール（例: 夕食、観光など）"
+                        "朝": "具体的な朝のスケジュール（面白い文章にしてください）",
+                        "朝の場所":"具体的な建物名(1つに決めてください)",
+                        "昼": "昼の具体的なスケジュール200字（面白い文章にしてください）",
+                        "昼の場所": "具体的な建物名(1つに決めてください)",
+                        "夜": "夜の具体的なスケジュール200字（面白い文章にしてください）",
+                        "夜の場所": "具体的な建物名(1つに決めてください)"
                     }}
                 }}
             ]
@@ -75,6 +88,22 @@ async def generate_content(request: GenerateRequest):
         # 生成されたJSONをパースして辞書形式に変換
         response_text = response.text.strip().strip('```json').strip()
         response_dict = json.loads(response_text)
+        
+        # 目的地から画像を取得
+        title_image_url = fetch_image(request.destination)
+        response_dict["旅行タイトル画像"] = title_image_url
+
+        # 朝、昼、夜の場所の画像を取得
+        for schedule in response_dict["詳細スケジュール"]:
+            if "朝の場所" in schedule["スケジュール"]:
+                morning_place_image = fetch_image(schedule["スケジュール"]["朝の場所"])
+                schedule["スケジュール"]["朝の場所画像"] = morning_place_image
+            if "昼の場所" in schedule["スケジュール"]:
+                afternoon_place_image = fetch_image(schedule["スケジュール"]["昼の場所"])
+                schedule["スケジュール"]["昼の場所画像"] = afternoon_place_image
+            if "夜の場所" in schedule["スケジュール"]:
+                night_place_image = fetch_image(schedule["スケジュール"]["夜の場所"])
+                schedule["スケジュール"]["夜の場所画像"] = night_place_image
         
         # Pydanticモデルに変換
         result = GenerateResponse(response=response_dict)

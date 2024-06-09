@@ -97,6 +97,9 @@ const TravelApp = () => {
             {response && (
                 <div className="response-container">
                     <h2>{response.旅行タイトル}</h2>
+                    {response.旅行タイトル画像 && (
+                        <img src={response.旅行タイトル画像} alt="旅行タイトル画像" className="title-image" />
+                    )}
                     <h3>詳細スケジュール:</h3>
                     {response.詳細スケジュール.map((detail, index) => (
                         <div key={index} className="schedule-detail">
@@ -104,13 +107,25 @@ const TravelApp = () => {
                                 <strong>日付:</strong> {detail.日付}
                             </div>
                             <div>
-                                <strong>朝:</strong> {detail.スケジュール.朝}
+                                <strong>朝:</strong> {detail.スケジュール.朝}<br />
+                                <strong>朝の場所:</strong> {detail.スケジュール.朝の場所}
+                                {detail.スケジュール.朝の場所画像 && (
+                                    <img src={detail.スケジュール.朝の場所画像} alt="朝の場所画像" className="place-image" />
+                                )}
                             </div>
                             <div>
-                                <strong>昼:</strong> {detail.スケジュール.昼}
+                                <strong>昼:</strong> {detail.スケジュール.昼}<br />
+                                <strong>昼の場所:</strong> {detail.スケジュール.昼の場所}
+                                {detail.スケジュール.昼の場所画像 && (
+                                    <img src={detail.スケジュール.昼の場所画像} alt="昼の場所画像" className="place-image" />
+                                )}
                             </div>
                             <div>
-                                <strong>夜:</strong> {detail.スケジュール.夜}
+                                <strong>夜:</strong> {detail.スケジュール.夜}<br />
+                                <strong>夜の場所:</strong> {detail.スケジュール.夜の場所}
+                                {detail.スケジュール.夜の場所画像 && (
+                                    <img src={detail.スケジュール.夜の場所画像} alt="夜の場所画像" className="place-image" />
+                                )}
                             </div>
                         </div>
                     ))}
