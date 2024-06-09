@@ -7,24 +7,9 @@ const WaveBackground = () => {
   // ページのロケーション情報を取得
   const location = useLocation();
 
-  // Outputコンポーネントに遷移しているかどうかを確認
-  const isOutputPage = location.pathname === '/output';
-
   return (
     <div className="wave-container">
-      {/* Outputコンポーネントに遷移している場合 */}
-      {isOutputPage && (
-        <div className="method">
-          <h1>おすすめの旅行先を提案します</h1>
-          <ul>
-            <li>3つの提案を記します</li>
-            <li>Google Calendarに追加する</li>
-            <li>もう一度提案する</li>
-          </ul>
-        </div>
-      )}
-      {/* Homeの場合 */}
-      {!isOutputPage && (
+        <img src="https://img.travel.rakuten.co.jp/kaigai_package/area/thailand/new/images/zSlide4.jpg" alt="background" className="background-image" />
         <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
              viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
           <defs>
@@ -37,7 +22,6 @@ const WaveBackground = () => {
             <use xlinkHref="#gentle-wave" x="48" y="7" fill="rgba(224,247,250)" />
           </g>
         </svg>
-      )}
     </div>
   );
 };

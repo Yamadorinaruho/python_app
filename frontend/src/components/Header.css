@@ -35,4 +35,11 @@ a:hover {
 .title {
     margin-bottom: 10px; /* タイトルと線の間の余白 */
     border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+}
+
+.travel-img {
+    width: 100px; /* 画像の幅を指定 */
+    height: 100px; /* 画像の高さを指定 */
 }

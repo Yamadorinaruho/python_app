@@ -10,7 +10,8 @@ const Header = () => {
             </nav>
             <div className="center">
                 <div className="title">
-                    <h1>旅行提案アプリ</h1>
+                    <img src="/travelmaker.png" class="travel-img" />
+                    <h1>トラベルメーカー</h1>
                 </div>
                 <div className="actions">
                     <div className="action-item">

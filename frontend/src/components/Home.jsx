@@ -42,7 +42,6 @@ const TravelApp = () => {
 
     return (
         <div className="container">
-            <h1>旅行提案アプリ</h1>
             <div className="rectangle-container">
                 <div className="input-with-icon">
                     <FaMapMarkerAlt className="input-icon" />
@@ -106,23 +105,26 @@ const TravelApp = () => {
                             <div>
                                 <strong>日付:</strong> {detail.日付}
                             </div>
-                            <div>
+                            <div className="card-content">
                                 <strong>朝:</strong> {detail.スケジュール.朝}<br />
-                                <strong>朝の場所:</strong> {detail.スケジュール.朝の場所}
+                                <strong>ひとこと:</strong> {detail.スケジュール.朝のひとこと}<br />
+                                <strong>場所:</strong> {detail.スケジュール.朝の場所}<br />
                                 {detail.スケジュール.朝の場所画像 && (
                                     <img src={detail.スケジュール.朝の場所画像} alt="朝の場所画像" className="place-image" />
                                 )}
                             </div>
-                            <div>
+                            <div className="card-content">
                                 <strong>昼:</strong> {detail.スケジュール.昼}<br />
-                                <strong>昼の場所:</strong> {detail.スケジュール.昼の場所}
+                                <strong>ひとこと:</strong> {detail.スケジュール.昼のひとこと}<br />
+                                <strong>場所:</strong> {detail.スケジュール.昼の場所}<br />
                                 {detail.スケジュール.昼の場所画像 && (
                                     <img src={detail.スケジュール.昼の場所画像} alt="昼の場所画像" className="place-image" />
                                 )}
                             </div>
-                            <div>
+                            <div className="card-content">
                                 <strong>夜:</strong> {detail.スケジュール.夜}<br />
-                                <strong>夜の場所:</strong> {detail.スケジュール.夜の場所}
+                                <strong>ひとこと:</strong> {detail.スケジュール.夜のひとこと}<br />
+                                <strong>場所:</strong> {detail.スケジュール.夜の場所}<br />
                                 {detail.スケジュール.夜の場所画像 && (
                                     <img src={detail.スケジュール.夜の場所画像} alt="夜の場所画像" className="place-image" />
                                 )}
